@@ -9,20 +9,36 @@ Rust and TypeScript, from Yucatán, México.
 
 ### The problem I work on
 
-An agent forgets everything between sessions, and nothing stops it from doing damage in the meantime. So I built the layer underneath: every tool call has to pass through it, and everything worth remembering gets written down.
+Two things go wrong with a coding agent: it forgets everything between sessions, and nothing stops it from doing damage in the meantime.
+
+**Every session** gets its scope resolved from the working directory, has to say what it's working on before it can mutate anything, and ends up written down whether or not someone remembered to save it.
+
+**A task worth the rigor** runs under a phase contract — and the agent doesn't begin with full capabilities. It earns them:
 
 ```mermaid
-flowchart LR
-    P([prompt]) --> M{cwd → project}
-    M --> F{focus<br/>declared?}
-    F -->|no| X[blocked]
-    F -->|yes| S{inside the<br/>approved scope?}
-    S -->|no| H[ask the human]
-    S -->|yes| T[tool runs]
-    H -->|approved| T
-    T --> D[(sqlite)]
-    D -.->|next session<br/>starts here| P
+flowchart TD
+    W{{"the human picks the workflow<br/><code>directo</code> · <code>estandar</code> · <code>libre</code>"}}
+    W --> E
+
+    E["<b>exploration</b><br/><i>read · grep · search · write_artifact</i>"]
+    E -->|"research_valida"| P
+
+    P["<b>planning</b><br/><i>+ decision_record</i>"]
+    P -->|"plan_valida"| H
+
+    H{{"human approves the plan<br/>— this is what authorizes the diff scope —"}}
+    H --> I
+
+    I["<b>implementation</b><br/><i>+ write_file, inside that scope · run_command</i>"]
+    I -->|"diff in scope + build ok"| V
+
+    V["<b>verification</b><br/><i>run_command</i>"]
+    V -->|"tests pass"| D([done])
+
+    I -.->|"a real decision showed up"| F["pause · escalate the workflow"]
 ```
+
+Those gate names aren't prompts asking nicely — they're files and exit codes. And the last line of defense isn't a refusal: **the tool registry is masked per phase, so a tool outside the current phase isn't in the request at all.** Nothing to resist.
 
 Same core, three clients: **Claude Code**, **opencode**, **oh-my-pi**. The adapters only translate protocol — every decision lives in one place, so a fix reaches all three.
 
