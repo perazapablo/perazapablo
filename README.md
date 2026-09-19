@@ -29,6 +29,7 @@ Admin systems people open every morning, and the APIs behind them.
 | 🏢 | `pcoriente-admin` 🔒 | Company-wide admin platform. Angular 15 standalone. |
 | ⚙️ | `server-pco-new` 🔒 | The API behind it. Node + TypeScript. |
 | 💧 | `admin-purifreze` 🔒 | Operations panel: services, charges, equipment. Angular. |
+| 🔌 | `server-admin-purifreze` 🔒 | Its backend. Node + TypeScript + MySQL. |
 | 📱 | [**puri-movil**](https://github.com/pcorientedesarrollos/puri-movil) | Field app for technicians. React Native + Expo, own design system. |
 | 📝 | [**purifreze_cms**](https://github.com/pcorientedesarrollos/purifreze_admin_cms_Frontend) | Content CMS, [front](https://github.com/pcorientedesarrollos/purifreze_admin_cms_Frontend) + [back](https://github.com/pcorientedesarrollos/purifreze_admin_cms_Backend). Angular + Node. |
 | 🌐 | [**landing_page_Purifreze**](https://github.com/pcorientedesarrollos/landing_page_Purifreze) | Public site. Astro. |
