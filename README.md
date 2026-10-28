@@ -1,6 +1,5 @@
-# Hi, I'm Pablo 👋
-
-📍 Yucatán, México · 💼 Full-stack dev at PC Oriente Desarrollos · 🎓 Digital Business & Virtual Environments student
+# I'm Pablo
+📍 Yucatán, México · 💼 Full-stack dev  🎓 Digital Business & Virtual Environments student
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
